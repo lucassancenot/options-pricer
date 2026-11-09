@@ -121,7 +121,7 @@ La prime est nulle hors la monnaie et croît à mesure que le put y entre.
 
 ## Validation
 
-XX tests automatisés (`pytest`), répartis en quatre familles :
+50 tests automatisés (`pytest`), répartis en quatre familles :
 
 - **Valeurs de référence** — comparaison aux exemples chiffrés de Hull.
 - **Propriétés sans modèle** — parité put-call sur une grille de paramètres,

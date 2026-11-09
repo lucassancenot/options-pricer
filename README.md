@@ -1,7 +1,7 @@
 # Pricer d'options européennes et américaines
 
 Valorisation d'options par trois méthodes indépendantes, validées les unes
-contre les autres : formule fermée de Black-Scholes, arbre binomial de
+contre les autres avec la formule fermée de Black-Scholes, arbre binomial de
 Cox-Ross-Rubinstein, et simulation de Monte Carlo.
 
 ## Motivation
@@ -22,21 +22,19 @@ différences finies centrées.
 
 ### Arbre binomial (Cox-Ross-Rubinstein)
 
-Discrétisation du temps en `n` pas, avec `u = exp(σ√Δt)` et `d = 1/u`. Le choix
+Discrétisation du temps, avec `u = exp(σ√Δt)` et `d = 1/u`. Le choix
 `ud = 1` fait recombiner l'arbre : `n+1` nœuds terminaux au lieu de `2^n`. La
 probabilité risque-neutre `q = (exp(rΔt) − d)/(u − d)` est calibrée pour que le
 sous-jacent croisse exactement au taux sans risque.
 
-Intérêt spécifique : la récursion arrière examine chaque nœud intermédiaire, ce
+L'intérêt spécifique est que la récursion arrière examine chaque nœud intermédiaire, ce
 qui permet de comparer valeur de continuation et exercice immédiat, donc de
 valoriser les options américaines ce qui est impossible avec la formule fermée.
 
 ### Monte Carlo
 
-Simulation vectorisée de `N` trajectoires terminales sous la mesure
-risque-neutre. L'erreur type décroît en `O(1/√N)` d'après le théorème central
-limite, ce qui fournit des intervalles de confiance — la seule des trois
-méthodes à quantifier sa propre incertitude.
+Simulation vectorisée de trajectoires terminales sous la mesure
+risque-neutre.
 
 Réduction de variance par variables antithétiques : pour chaque `Z` tiré, on
 simule aussi `−Z`, et on moyenne les payoffs par paire. La corrélation négative
